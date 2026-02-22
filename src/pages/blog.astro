@@ -1,0 +1,191 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const blogPosts = [
+  {
+    title: "Finding Signal in the Noise: A Data Analyst's Approach",
+    date: "2026-02-15",
+    excerpt: "How I use simple techniques to cut through complexity and find actionable insights.",
+    slug: "finding-signal-in-noise",
+  },
+  {
+    title: "Lessons from Running a Service Business",
+    date: "2026-02-01",
+    excerpt: "What operating an exterior cleaning company taught me about operations, customer service, and scale.",
+    slug: "lessons-service-business",
+  },
+  {
+    title: "Why Every Analyst Should Build Something",
+    date: "2026-01-20",
+    excerpt: "The skills you gain from building a product or business will make you a better analyst.",
+    slug: "analyst-should-build",
+  },
+];
+---
+
+<Layout title="Writing - Andrew Felt">
+  <Header />
+  <main>
+    <section class="blog-hero">
+      <div class="container">
+        <h1>Writing</h1>
+        <p class="subtitle">Thoughts on data, business, and building things that work.</p>
+      </div>
+    </section>
+
+    <section class="blog-list section">
+      <div class="container">
+        <div class="posts-grid">
+          {blogPosts.map((post) => (
+            <article class="post-card">
+              <time class="post-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              <h2><a href={`/blog/${post.slug}`}>{post.title}</a></h2>
+              <p class="post-excerpt">{post.excerpt}</p>
+              <a href={`/blog/${post.slug}`} class="read-more">Read more →</a>
+            </article>
+          ))}
+        </div>
+
+        <div class="coming-soon">
+          <p>More articles coming soon. Subscribe to get notified when I publish.</p>
+          <form class="subscribe-form">
+            <input type="email" placeholder="your@email.com" required />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .blog-hero {
+    padding: 4rem 0 3rem;
+    background: linear-gradient(135deg, var(--bg-white) 0%, var(--neutral-light) 100%);
+    text-align: center;
+  }
+
+  .blog-hero h1 {
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    color: var(--text-medium);
+  }
+
+  .blog-list {
+    background: white;
+  }
+
+  .posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .post-card {
+    padding-bottom: 3rem;
+    border-bottom: 2px solid var(--neutral-light);
+  }
+
+  .post-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .post-date {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+  }
+
+  .post-card h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-card h2 a {
+    color: var(--primary-navy);
+    transition: color var(--transition-fast);
+  }
+
+  .post-card h2 a:hover {
+    color: var(--accent-coral);
+  }
+
+  .post-excerpt {
+    font-size: 1.125rem;
+    color: var(--text-medium);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .read-more {
+    color: var(--accent-coral);
+    font-weight: 600;
+    transition: color var(--transition-fast);
+  }
+
+  .read-more:hover {
+    color: var(--accent-gold);
+  }
+
+  .coming-soon {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 3rem;
+    background: var(--neutral-light);
+    border-radius: 12px;
+  }
+
+  .coming-soon p {
+    font-size: 1.125rem;
+    color: var(--text-medium);
+    margin-bottom: 1.5rem;
+  }
+
+  .subscribe-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .subscribe-form input {
+    flex: 1;
+    min-width: 250px;
+    padding: 0.875rem 1.25rem;
+    border: 2px solid var(--primary-navy);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color var(--transition-fast);
+  }
+
+  .subscribe-form input:focus {
+    outline: none;
+    border-color: var(--accent-coral);
+  }
+
+  .subscribe-form button {
+    padding: 0.875rem 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .subscribe-form {
+      flex-direction: column;
+    }
+
+    .subscribe-form input {
+      width: 100%;
+    }
+  }
+</style>

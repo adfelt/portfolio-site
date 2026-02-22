@@ -1,0 +1,114 @@
+---
+---
+
+<header class="header">
+  <nav class="nav container">
+    <a href="/" class="logo">Andrew Felt</a>
+    <ul class="nav-links">
+      <li><a href="/#projects">Projects</a></li>
+      <li><a href="/blog">Writing</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#contact" class="contact-btn">Contact</a></li>
+    </ul>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    background: rgba(250, 251, 252, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--neutral-light);
+    z-index: 1000;
+    padding: 1rem 0;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-navy);
+    transition: color var(--transition-fast);
+  }
+
+  .logo:hover {
+    color: var(--accent-coral);
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--text-medium);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-links a:hover {
+    color: var(--accent-coral);
+  }
+
+  .contact-btn {
+    background: var(--accent-coral);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+
+  .contact-btn:hover {
+    background: var(--accent-gold);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0.5rem;
+  }
+
+  .mobile-menu-btn span {
+    width: 24px;
+    height: 3px;
+    background: var(--primary-navy);
+    border-radius: 3px;
+    transition: all var(--transition-fast);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+
+    .mobile-menu-btn {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  
+  mobileMenuBtn?.addEventListener('click', () => {
+    // Mobile menu toggle functionality
+    console.log('Menu clicked');
+  });
+</script>

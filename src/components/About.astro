@@ -1,0 +1,168 @@
+---
+const skills = {
+  "Data & Analytics": [
+    "SQL & Database Management",
+    "Python (Pandas, NumPy, Scikit-learn)",
+    "Tableau & Power BI",
+    "Statistical Analysis",
+    "Excel & Google Sheets",
+  ],
+  "Technical": [
+    "HTML/CSS/JavaScript",
+    "React & Astro",
+    "Git & GitHub",
+    "API Integration",
+    "Web Development",
+  ],
+  "Business": [
+    "Project Management",
+    "Operations & Process Improvement",
+    "Customer Relationship Management",
+    "Marketing & Growth Strategy",
+    "Financial Analysis",
+  ],
+};
+---
+
+<section id="about" class="section about">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          I'm a data analyst with an entrepreneurial streak. While most analysts stick to spreadsheets, 
+          I've also built and run businesses—from exterior cleaning to real estate investments.
+        </p>
+        <p>
+          This combination gives me a unique perspective: I don't just crunch numbers, I understand 
+          the business context behind them. I know what it's like to make decisions with real money 
+          on the line, to juggle competing priorities, and to turn insights into action.
+        </p>
+        <p>
+          Whether I'm optimizing a Tableau dashboard, managing a construction project, or analyzing 
+          market trends, I bring the same approach: <strong>clarity, practicality, and results</strong>.
+        </p>
+        
+        <div class="cta-links">
+          <a href="mailto:hello@andrewfelt.com" class="btn btn-primary">Get In Touch</a>
+          <a href="/resume.pdf" class="btn btn-secondary" download>Download Resume</a>
+        </div>
+      </div>
+
+      <div class="skills-section">
+        <h3>Skills & Tools</h3>
+        <div class="skills-grid">
+          {Object.entries(skills).map(([category, items]) => (
+            <div class="skill-category">
+              <h4>{category}</h4>
+              <ul>
+                {items.map((skill) => (
+                  <li>{skill}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--bg-white);
+  }
+
+  .about-content {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+  }
+
+  .about-text h2 {
+    margin-bottom: 2rem;
+  }
+
+  .about-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-medium);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text strong {
+    color: var(--accent-coral);
+    font-weight: 600;
+  }
+
+  .cta-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .skills-section h3 {
+    margin-bottom: 2rem;
+    color: var(--primary-navy);
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .skill-category {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid var(--neutral-light);
+  }
+
+  .skill-category h4 {
+    color: var(--accent-coral);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .skill-category ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skill-category li {
+    color: var(--text-medium);
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .skill-category li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent-coral);
+  }
+
+  @media (max-width: 968px) {
+    .about-content {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cta-links {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
