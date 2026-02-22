@@ -1,28 +1,13 @@
 ---
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const blogPosts = [
-  {
-    title: "Finding Signal in the Noise: A Data Analyst's Approach",
-    date: "2026-02-15",
-    excerpt: "How I use simple techniques to cut through complexity and find actionable insights.",
-    slug: "finding-signal-in-noise",
-  },
-  {
-    title: "Lessons from Running a Service Business",
-    date: "2026-02-01",
-    excerpt: "What operating an exterior cleaning company taught me about operations, customer service, and scale.",
-    slug: "lessons-service-business",
-  },
-  {
-    title: "Why Every Analyst Should Build Something",
-    date: "2026-01-20",
-    excerpt: "The skills you gain from building a product or business will make you a better analyst.",
-    slug: "analyst-should-build",
-  },
-];
+const blogPosts = (await getCollection('blog')).sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+    new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
 ---
 
 <Layout title="Writing - Andrew Felt">
@@ -38,12 +23,12 @@ const blogPosts = [
     <section class="blog-list section">
       <div class="container">
         <div class="posts-grid">
-          {blogPosts.map((post) => (
+          {blogPosts.map((post: CollectionEntry<'blog'>) => (
             <article class="post-card">
-              <time class="post-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-              <h2><a href={`/blog/${post.slug}`}>{post.title}</a></h2>
-              <p class="post-excerpt">{post.excerpt}</p>
-              <a href={`/blog/${post.slug}`} class="read-more">Read more →</a>
+              <time class="post-date">{new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              <h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>
+              <p class="post-excerpt">{post.data.excerpt}</p>
+              <a href={`/blog/${post.id}`} class="read-more">Read more →</a>
             </article>
           ))}
         </div>
