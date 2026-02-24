@@ -22,12 +22,20 @@ const { title, description = "Portfolio of Andrew Felt - Data Analyst, Entrepren
   </head>
   <body>
     <slot />
-    <script>
-      const identity = (window as any).netlifyIdentity;
+    <script is:inline>
+      // Redirect invite/recovery tokens to /admin/ where Decap CMS handles them
+      if (window.location.hash && (
+        window.location.hash.includes('invite_token=') ||
+        window.location.hash.includes('recovery_token=')
+      )) {
+        window.location.href = '/admin/' + window.location.hash;
+      }
+
+      const identity = window.netlifyIdentity;
       if (identity) {
-        identity.on("init", (user: any) => {
+        identity.on("init", function(user) {
           if (!user) {
-            identity.on("login", () => {
+            identity.on("login", function() {
               document.location.href = "/admin/";
             });
           }
